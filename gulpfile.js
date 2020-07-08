@@ -3,6 +3,7 @@ var sourcemaps = require("gulp-sourcemaps");
 var babel = require("gulp-babel");
 var concat = require("gulp-concat");
 var nodemon = require('gulp-nodemon');
+var env = require('gulp-env');
 require('dotenv').config();
 
 gulp.task("build", function () {
@@ -27,4 +28,3 @@ gulp.task('serve', function (done) {
     });
     return stream;
 });
-
