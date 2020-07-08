@@ -19,7 +19,7 @@
     "gulp": "^4.0.2"
   },
   "scripts": {
-    "start": "gulp set-env && gulp build && node dist/all.js"
+    "start": "node dist/all.js"
   },
   "author": "",
   "license": "ISC"
