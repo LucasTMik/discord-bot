@@ -1,0 +1,23 @@
+{
+  "name": "botdagalera",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "discord.js": "^12.2.0",
+    "dotenv": "^8.2.0",
+    "gulp-babel": "^8.0.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-nodemon": "^2.5.0",
+    "gulp-sourcemaps": "^2.6.5",
+    "nodemon": "^2.0.4"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.10.4",
+    "@babel/preset-env": "^7.10.4",
+    "gulp": "^4.0.2"
+  },
+  "scripts": {},
+  "author": "",
+  "license": "ISC"
+}
