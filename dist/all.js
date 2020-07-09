@@ -2,29 +2,33 @@
 
 var _discord = require("discord.js");
 
+var _ytdlCore = _interopRequireDefault(require("ytdl-core"));
+
+var _ytSearch = _interopRequireDefault(require("yt-search"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
 require('dotenv').config();
 
 var client = new _discord.Client();
 client.on('ready', function () {
-  return console.log("Im ready");
+  return console.log("Im readie");
 });
-client.on('message', function (msg) {
-  var newMsg = new _discord.Message();
+client.on('message', function (message) {
+  var args = message.content.split(' ');
 
-  if (msg.author === "Antoniio Jr") {
-    newMsg.content = "Esse mlk é o q da ré, certeza";
-    msg.channel.send(newMsg);
-  }
-
-  if (msg.author && msg.author.username === "LukinhaDaGalera") {
-    newMsg.content = "good";
-    msg.channel.send(newMsg);
-  }
-
-  if (msg.author.username === "Allan") {
-    newMsg.content = "Gay";
-    msg.channel.send(newMsg);
+  if (args && args.length && args[0] === 'solta') {
+    message.member.voice.channel.join().then(function (connection) {
+      (0, _ytSearch["default"])(args[1].trim(), function (err, r) {
+        if (err) return;
+        var videos = r.videos;
+        console.log(videos);
+        connection.play((0, _ytdlCore["default"])(videos[0].url));
+      });
+      var msg = new _discord.MessageEmbed().setColor('#0099ff').setURL(args[0]).setTitle("Soltando");
+    });
   }
 });
 client.login(process.env.TOKEN);
+"use strict";
 //# sourceMappingURL=all.js.map

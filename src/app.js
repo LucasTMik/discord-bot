@@ -1,27 +1,30 @@
 require('dotenv').config();
-import { Client, Message } from 'discord.js';
+import { Client, Message, MessageEmbed } from 'discord.js';
+import ytdl from 'ytdl-core';
+import ytSearch from 'yt-search';
 
 const client = new Client();
 
-client.on('ready', () => console.log("Im ready"));
+client.on('ready', () => console.log("Im readie"));
 
-client.on('message', msg => {
-    const newMsg = new Message();
-
-    if(msg.author === "Antoniio Jr") {
-        newMsg.content = "Esse mlk é o q da ré, certeza"
-        msg.channel.send(newMsg);
+client.on('message', message => {
+    const args = message.content.split(' ');
+    if(args && args.length && args[0] === 'solta') {
+        message.member.voice.channel.join()
+            .then((connection) => {
+                ytSearch(args[1].trim(), (err, r) => {
+                    if(err) return;
+                    const videos = r.videos;
+                    console.log(videos);
+                    connection.play(ytdl(videos[0].url));
+                })
+                const msg = new MessageEmbed()
+                    .setColor('#0099ff')
+                    .setURL(args[0])
+                    .setTitle("Soltando");
+                
+            });
     }
-
-    if(msg.author && msg.author.username === "LukinhaDaGalera") {
-        newMsg.content = "good";
-        msg.channel.send(newMsg);
-    }
-    
-    if(msg.author.username === "Allan") {
-        newMsg.content = "Gay";
-        msg.channel.send(newMsg);
-    }
-});
+})
 
 client.login(process.env.TOKEN);
